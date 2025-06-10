@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
 
-const petRouter = require('./controllers/pets.js');
+const mailboxRouter = require('./controllers/mailboxes.js');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -18,7 +18,7 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
 app.use(logger('dev'));
 
-app.use('/pets', petRouter);
+app.use('/mailboxes', mailboxRouter);
 
 app.listen(3000, () => {
     console.log('The express app is ready!');

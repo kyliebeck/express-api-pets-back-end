@@ -1,5 +1,5 @@
 {
-  "name": "express-api-pets-back-end",
+  "name": "dom-lab-back-end",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongoose": "^8.15.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-select": "^5.10.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

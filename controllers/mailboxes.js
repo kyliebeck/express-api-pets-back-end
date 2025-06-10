@@ -1,15 +1,15 @@
 
-const Pet = require('../models/pet.js');
+const Mailbox = require('../models/mailbox.js');
 const express = require('express');
 const router = express.Router();
 
 
-// CREATE - POST - /pets
+// CREATE - POST - /mailboxes
 router.post('/', async (req, res) => {
     try {
-        // create new pet with data from the body
-        const createdPet = await Pet.create(req.body);
-        res.status(201).json(createdPet);
+        // create new mailbox with data from the body
+        const createdMailbox = await Mailbox.create(req.body);
+        res.status(201).json(createdMailbox);
     } catch (err) {
         // handle error
         res.status(500).json({ err: err.message });
@@ -17,26 +17,26 @@ router.post('/', async (req, res) => {
 
 });
 
-// READ - GET - /pets
+// READ - GET - /mailbox
 router.get('/', async (req, res) => {
     try {
-        const foundPets = await Pet.find();
-        res.status(200).json(foundPets);  // 200 OK
+        const foundMailboxes = await Mailbox.find();
+        res.status(200).json(foundMailboxes);  // 200 OK
     } catch (err) {
         // Add error handling code
         res.status(500).json({ err: err.message }); // 500 Internal Server Error
     }
 });
 
-// READ - GET - /pets/:petId
-router.get('/:petId', async (req, res) => {
+// READ - GET - /mailboxes/:mailboxId
+router.get('/:mailboxId', async (req, res) => {
     try {
-        const foundPet = await Pet.findById(req.params.petId);
-        if (!foundPet) {
+        const foundMailbox = await Mailbox.findById(req.params.mailboxId);
+        if (!foundMailbox) {
             res.status(404);
-            throw new Error('Pet not found.');
+            throw new Error('Mailbox not found.');
         }
-        res.status(200).json(foundPet);
+        res.status(200).json(foundMailbox);
     } catch (err) {
         // Add error handling code for 404 errors
         if (res.statusCode === 404) {
@@ -48,14 +48,14 @@ router.get('/:petId', async (req, res) => {
     }
 });
 
-router.delete('/:petId', async (req, res) => {
+router.delete('/:mailboxId', async (req, res) => {
     try {
-        const foundPet = await Pet.findByIdAndDelete(req.params.petId);
-        if (!foundPet) {
+        const foundMailbox = await Mailbox.findByIdAndDelete(req.params.mailboxId);
+        if (!foundMailbox) {
             res.status(404);
-            throw new Error('Pet not found');
+            throw new Error('Mailbox not found');
         }
-        res.status(200).json(foundPet);
+        res.status(200).json(foundMailbox);
     } catch (err) {
         if (res.statusCode === 404) {
             res.json({ err: err.message });
